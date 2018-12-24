@@ -1,0 +1,95 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+
+<dom-module id="product-create">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .container{
+        margin-bottom: 20px;
+      }
+      paper-button{
+        float: right;
+      }
+    </style>
+    <iron-ajax id="saveProductRequest" method="post" url="[[serverUrl]]" handle-as="json" body="[[product]]"
+      content-type="application/json" on-response="productSaved" on-error="errorSave">
+    </iron-ajax>
+    <div class="container">
+      <h3>Crear producto nuevo</h3>
+      <paper-input label="Nombre producto" value="{{product.name}}"></paper-input>
+      <paper-input label="Descripcion" value="{{product.description}}"></paper-input>
+      <paper-input label="Url Imagen" value="{{product.url}}"></paper-input>
+      <paper-input label="Precio" type="number" value="{{product.price}}"></paper-input>
+      <paper-button on-tap="verifyValues">Guardar producto</paper-button>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `product-create`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ProductCreate extends Polymer.Element {
+      static get is() {
+        return 'product-create';
+      }
+      static get properties() {
+        return {
+          product: {
+            type: Object,
+            value() {
+              return {
+                name: "",
+                description: "",
+                url: "",
+                price: ""
+              }
+            }
+          },
+          serverUrl: {
+            type: String,
+            value: "http://localhost:3000/productos"
+          }
+        };
+      }
+
+      verifyValues() {
+        if (this.name !== "") {
+          this.saveProduct();
+        }
+      }
+
+      saveProduct() {
+        this.$.saveProductRequest.generateRequest();
+      }
+
+      productSaved(event) {
+        this.dispatchEvent(new CustomEvent("product-created",{
+          bubbles:false, 
+          composed:false,
+          detail:this.product
+        }));
+      }
+
+      errorSave(event){        
+        this.dispatchEvent(new CustomEvent("product-error",{
+          bubbles:false, 
+          composed:false,
+          detail:event.detail.error
+        }))
+      }
+
+    }
+
+    window.customElements.define(ProductCreate.is, ProductCreate);
+  </script>
+</dom-module>
