@@ -1,6 +1,34 @@
 # \<product-create\>
 
+## Install bower
+```
+$ npm i bower
+```
 
+## run bower install
+```
+$ npm i bower
+```
+
+## variables in product-create
+
+```
+product:{
+    name:String,
+    description:String,
+    url:String,
+    price:Number
+}
+
+serverUrl: String // determines the post request direction
+
+language:{
+    descriptionLabel:String,
+    nameLabel:String,
+    priceLabel:String,
+    urlImageLabel:String
+}   //determines the language of the labels
+```
 
 ## Install the Polymer-CLI
 
