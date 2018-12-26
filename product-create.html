@@ -21,10 +21,10 @@
     </iron-ajax>
     <div class="container">
       <h3>Crear producto nuevo</h3>
-      <paper-input label="Nombre producto" value="{{product.name}}"></paper-input>
-      <paper-input label="Descripcion" value="{{product.description}}"></paper-input>
-      <paper-input label="Url Imagen" value="{{product.url}}"></paper-input>
-      <paper-input label="Precio" type="number" value="{{product.price}}"></paper-input>
+      <paper-input label="[[language.nameLabel]]" value="{{product.name}}"></paper-input>
+      <paper-input label="[[language.descriptionLabel]]" value="{{product.description}}"></paper-input>
+      <paper-input label="[[language.urlImageLabel]]" value="{{product.url}}"></paper-input>
+      <paper-input label="[[language.priceLabel]]" type="number" value="{{product.price}}"></paper-input>
       <paper-button on-tap="verifyValues">Guardar producto</paper-button>
     </div>
   </template>
@@ -58,6 +58,17 @@
           serverUrl: {
             type: String,
             value: ""
+          },
+          language:{
+            type:Object,
+            velue(){
+              return {
+                descriptionLabel:"descripcion",
+                nameLabel:"nombre",
+                priceLabel:"precio",
+                urlImageLabel:"url imagen"
+              }
+            }
           }
         };
       }

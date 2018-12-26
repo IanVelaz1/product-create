@@ -16,14 +16,13 @@
     "polymer": "^2.0.0"
   },
   "homepage": "https://github.com/jusolete/product-create",
-  "_release": "295a5dec93",
+  "_release": "33462cc7ed",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "295a5dec93f51f08450fbe9bc0ff2a45bf433365"
+    "commit": "33462cc7ede3ca3a078dbdadb4b14984edf8d7dd"
   },
   "_source": "https://github.com/jusolete/product-create.git",
   "_target": "*",
-  "_originalSource": "jusolete/product-create",
-  "_direct": true
+  "_originalSource": "jusolete/product-create"
 }
