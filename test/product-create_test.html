@@ -13,36 +13,24 @@
   </head>
   <body>
 
-    <test-fixture id="BasicTestFixture">
+    <test-fixture id="productPropertyChanged">
       <template>
         <product-create></product-create>
       </template>
     </test-fixture>
 
-    <test-fixture id="ChangedPropertyTestFixture">
-      <template>
-        <product-create prop1="new-prop1"></product-create>
-      </template>
-    </test-fixture>
+    
 
     <script>
       suite('product-create', () => {
 
-        test('instantiating the element with default properties works', () => {
-          const element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'product-create');
-          const elementShadowRoot = element.shadowRoot;
-          const elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello product-create!');
-        });
-
-        test('setting a property on the element works', () => {
-          // Create a test fixture
-          const element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
-          const elementShadowRoot = element.shadowRoot;
-          const elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+        test('product variable is taking the defined values', () => {
+          const element = fixture('productPropertyChanged');
+          element.set("product",{name:"prod1",description:"description",url:"url",price:"1234"})
+          assert.equal(element.product.name,"prod1");
+          assert.equal(element.product.description,"description");
+          assert.equal(element.product.url,"url");
+          assert.equal(element.product.price,"1234");
         });
 
       });
