@@ -1,5 +1,5 @@
 # \<product-create\>
-
+[![Build status](https://travis-ci.com/jusolete/product-create.svg?branch=master)](https://travis-ci.org/jusolete/product-create)
 ## Install bower
 ```
 $ npm i bower
